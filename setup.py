@@ -34,7 +34,7 @@ setup(
     license="BSD 2-Clause",
     description='Run IPython notebooks from the command line',
     long_description=readme,
-    url='https://github.com/paulgb/runipy',
+    url='https://github.com/ehallmark/runipy',
     author='Paul Butler',
     author_email='paulgb@gmail.com',
     maintainer='John Kirkham',
