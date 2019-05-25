@@ -63,6 +63,10 @@ def main():
         help='don\'t print anything unless things go wrong'
     )
     parser.add_argument(
+        '--cells', '-c', action='store_true', default=None,
+        help='Which cell(s) to execute. Format is a comma separated list of indices'
+    )
+    parser.add_argument(
         '--overwrite', '-o', action='store_true',
         help='write notebook output back to original notebook'
     )
@@ -157,8 +161,13 @@ def main():
     )
 
     exit_status = 0
+    if args.cells is None:
+        cells = None
+    else:
+        cells = [int(cell) for cell in args.cells.split(",")]
+
     try:
-        nb_runner.run_notebook(skip_exceptions=args.skip_exceptions)
+        nb_runner.run_notebook(skip_exceptions=args.skip_exceptions, cells=cells)
     except NotebookError:
         exit_status = 1
 

@@ -232,7 +232,7 @@ class NotebookRunner(object):
                 if cell.cell_type == 'code':
                     yield cell
 
-    def run_notebook(self, skip_exceptions=False, progress_callback=None):
+    def run_notebook(self, skip_exceptions=False, progress_callback=None, cells=None):
         """
         Run all the notebook cells in order and update the outputs in-place.
 
@@ -240,6 +240,9 @@ class NotebookRunner(object):
         subsequent cells are run (by default, the notebook execution stops).
         """
         for i, cell in enumerate(self.iter_code_cells()):
+            if cells is not None:
+                if i not in cells:
+                    continue
             try:
                 self.run_cell(cell)
             except NotebookError:
