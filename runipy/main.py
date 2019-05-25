@@ -63,7 +63,7 @@ def main():
         help='don\'t print anything unless things go wrong'
     )
     parser.add_argument(
-        '--cells', '-c', action='store_true', default='all',
+        '--cells', default='all',
         help='Which cell(s) to execute. Format is a comma separated list of indices'
     )
     parser.add_argument(
@@ -161,7 +161,7 @@ def main():
     )
 
     exit_status = 0
-    if args.cells is None or args.cells.length == 0 or args.cells == 'all':
+    if args.cells is None or not args.cells or len(args.cells) == 0 or args.cells == 'all':
         cells = None
     else:
         cells = [int(cell) for cell in args.cells.split(",")]
