@@ -221,7 +221,7 @@ class NotebookRunner(object):
                 )
             outs.append(out)
         cell['outputs'] = outs
-
+        logging.info('Cell output:\n%s\n', outs)
         if status == 'error':
             raise NotebookError(traceback_text)
 
